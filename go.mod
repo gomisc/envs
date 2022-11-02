@@ -3,16 +3,16 @@ module git.eth4.dev/golibs/confctl
 go 1.18
 
 require (
-	git.eth4.dev/golibs/errors v1.1.17
-	git.eth4.dev/golibs/network v1.0.8
-	git.eth4.dev/golibs/slog v1.0.9
+	git.eth4.dev/golibs/errors v1.2.1
+	git.eth4.dev/golibs/network v1.1.0
+	git.eth4.dev/golibs/slog v1.1.0
 	github.com/labstack/echo/v4 v4.8.0
 )
 
 require (
-	git.eth4.dev/golibs/fields v1.0.6 // indirect
-	git.eth4.dev/golibs/tags v1.0.5 // indirect
-	git.eth4.dev/golibs/types v1.0.4 // indirect
+	git.eth4.dev/golibs/fields v1.1.0 // indirect
+	git.eth4.dev/golibs/tags v1.1.0 // indirect
+	git.eth4.dev/golibs/types v1.1.0 // indirect
 	github.com/go-logr/logr v1.2.3 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
 	github.com/golang-jwt/jwt v3.2.2+incompatible // indirect
