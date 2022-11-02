@@ -4,8 +4,8 @@ import (
 	"net/http"
 	"strings"
 
-	"git.corout.in/golibs/network/http"
-	"git.corout.in/golibs/slog"
+	"git.eth4.dev/golibs/network/http"
+	"git.eth4.dev/golibs/slog"
 )
 
 type remoteConfigController struct {

@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"sync"
 
-	"git.corout.in/golibs/errors"
-	"git.corout.in/golibs/slog"
+	"git.eth4.dev/golibs/errors"
+	"git.eth4.dev/golibs/slog"
 )
 
 const (
