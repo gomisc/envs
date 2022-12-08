@@ -3,9 +3,9 @@ module git.eth4.dev/golibs/confctl
 go 1.18
 
 require (
-	git.eth4.dev/golibs/errors v1.2.1
-	git.eth4.dev/golibs/network v1.1.1
-	git.eth4.dev/golibs/slog v1.1.0
+	git.eth4.dev/golibs/errors v1.2.2
+	git.eth4.dev/golibs/network v1.1.5
+	git.eth4.dev/golibs/slog v1.1.1
 	github.com/labstack/echo/v4 v4.8.0
 )
 
