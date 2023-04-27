@@ -4,8 +4,8 @@ import (
 	"net/http"
 	"strings"
 
-	"git.eth4.dev/golibs/network/http"
-	"git.eth4.dev/golibs/slog"
+	"gopkg.in/gomisc/network.v1/http"
+	"gopkg.in/gomisc/slog.v1"
 )
 
 type remoteConfigController struct {
@@ -44,7 +44,7 @@ func (c *remoteConfigController) Set(key, value string) {
 		c.log.Error("send set request", err)
 	}
 
-	if err = nethttp.ResponseOrError(resp, http.StatusOK, nil); err != nil {
+	if _, err = nethttp.ResponseOrError(resp, http.StatusOK, nil); err != nil {
 		c.log.Error("check response", err)
 	}
 }
@@ -62,7 +62,7 @@ func (c *remoteConfigController) SetFor(prefix, key, value string) {
 		c.log.Error("send set request", err)
 	}
 
-	if err = nethttp.ResponseOrError(resp, http.StatusOK, nil); err != nil {
+	if _, err = nethttp.ResponseOrError(resp, http.StatusOK, nil); err != nil {
 		c.log.Error("check response", err)
 	}
 }
@@ -82,7 +82,7 @@ func (c *remoteConfigController) Add(key, value, delim string) {
 		return
 	}
 
-	if err = nethttp.ResponseOrError(resp, http.StatusOK, nil); err != nil {
+	if _, err = nethttp.ResponseOrError(resp, http.StatusOK, nil); err != nil {
 		c.log.Error("check response", err)
 	}
 }
@@ -102,7 +102,7 @@ func (c *remoteConfigController) AddFor(prefix, key, value, delim string) {
 		return
 	}
 
-	if err = nethttp.ResponseOrError(resp, http.StatusOK, nil); err != nil {
+	if _, err = nethttp.ResponseOrError(resp, http.StatusOK, nil); err != nil {
 		c.log.Error("check response", err)
 	}
 }
@@ -120,7 +120,7 @@ func (c *remoteConfigController) Get(key string) (value string, ok bool) {
 		return "", false
 	}
 
-	if err = nethttp.ResponseOrError(resp, http.StatusOK, &value); err != nil {
+	if _, err = nethttp.ResponseOrError(resp, http.StatusOK, &value); err != nil {
 		c.log.Error("check response", err)
 
 		return "", false
@@ -130,7 +130,7 @@ func (c *remoteConfigController) Get(key string) (value string, ok bool) {
 }
 
 // GetFor GET http://host:port/api/prefix/key -> 200 OK string
-func (c *remoteConfigController) GetFor(prefix, key string) (value string, ok bool) {
+func (c *remoteConfigController) GetFor(prefix, key string) (string, bool) {
 	if c == nil {
 		return "", false
 	}
@@ -142,13 +142,15 @@ func (c *remoteConfigController) GetFor(prefix, key string) (value string, ok bo
 		return "", false
 	}
 
-	if err = nethttp.ResponseOrError(resp, http.StatusOK, &value); err != nil {
+	var value *string
+
+	if value, err = nethttp.ResponseOrError(resp, http.StatusOK, value); err != nil {
 		c.log.Error("check response", err)
 
 		return "", false
 	}
 
-	return value, true
+	return *value, true
 }
 
 // DumpEnv GET http://host:port/api/dump -> 200 OK []string
@@ -167,14 +169,15 @@ func (c *remoteConfigController) DumpEnv(filter ...string) []string {
 		return nil
 	}
 
-	dump := []string{}
-	if err = nethttp.ResponseOrError(resp, http.StatusOK, &dump); err != nil {
+	var dump *[]string
+
+	if dump, err = nethttp.ResponseOrError(resp, http.StatusOK, dump); err != nil {
 		c.log.Error("check response", err)
 
 		return nil
 	}
 
-	return dump
+	return *dump
 }
 
 // DumpEnvFor GET http://host:port/api/dump -> 200 OK []string
@@ -193,14 +196,15 @@ func (c *remoteConfigController) DumpEnvFor(prefix string, filter ...string) []s
 		return nil
 	}
 
-	dump := []string{}
-	if err = nethttp.ResponseOrError(resp, http.StatusOK, &dump); err != nil {
+	var dump *[]string
+
+	if dump, err = nethttp.ResponseOrError(resp, http.StatusOK, dump); err != nil {
 		c.log.Error("check response", err)
 
 		return nil
 	}
 
-	return dump
+	return *dump
 }
 
 // Close имплементтация io.Closer

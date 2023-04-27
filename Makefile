@@ -1,3 +1,3 @@
 gomod:
-	go tidy
+	go mod tidy
 	go mod download

@@ -6,7 +6,7 @@ import (
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 
-	"git.eth4.dev/golibs/errors"
+	"gopkg.in/gomisc/errors.v1"
 )
 
 const (
@@ -22,9 +22,11 @@ func (ctl *localConfigController) router() *echo.Echo {
 	router.Use(middleware.Logger())
 	router.Use(middleware.Recover())
 
-	router.GET("/alive", func(ctx echo.Context) error {
-		return ctx.String(http.StatusOK, "alive")
-	})
+	router.GET(
+		"/alive", func(ctx echo.Context) error {
+			return ctx.String(http.StatusOK, "alive")
+		},
+	)
 
 	api := router.Group("/api")
 	api.GET("/:"+keyParam, ctl.get)

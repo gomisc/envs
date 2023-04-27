@@ -7,13 +7,13 @@ import (
 	"net/http"
 	"sync"
 
-	"git.eth4.dev/golibs/errors"
-	"git.eth4.dev/golibs/slog"
+	"gopkg.in/gomisc/errors.v1"
+	"gopkg.in/gomisc/slog.v1"
 )
 
 const (
 	// ConfigControllerPortKey - ключ для хранения порта контроллера конфигурации
-	ConfigControllerPortKey = "/confctl/port"
+	ConfigControllerPortKey = "/envs/port"
 )
 
 // Controller - контроллер конфигурирования тестовой среды
